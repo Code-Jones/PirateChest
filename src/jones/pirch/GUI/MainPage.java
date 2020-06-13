@@ -19,9 +19,9 @@ public class MainPage extends JFrame {
     private JButton keysButton;
     private JButton settingsButton;
 
-    public MainPage() {
-        this.keyManager = new KeyManager();
-        this.settingManager = new SettingsManager();
+    public MainPage(KeyManager keyManager, SettingsManager settingsManager) {
+        this.keyManager = keyManager;
+        this.settingManager = settingsManager;
 
         setSize(WINDOW_W, WINDOW_H);
         setTitle("PirateChest");
