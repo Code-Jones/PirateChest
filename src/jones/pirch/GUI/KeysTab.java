@@ -48,7 +48,6 @@ public class KeysTab extends TabBase {
 
         inputUrlBox = new JTextField(10);
         inputLoginBox = new JTextField(10);
-        inputPasswordBox = new JTextField(10);
 
         constraint.gridx = 0;
         constraint.gridy = 0;
@@ -66,9 +65,25 @@ public class KeysTab extends TabBase {
         constraint.gridy = 1;
         panel.add(inputLoginBox, constraint);
         constraint.gridy = 2;
-        panel.add(inputPasswordBox, constraint);
+        panel.add(passwordPanel(), constraint);
         constraint.gridy = 3;
-//        panel.add();
+        return panel;
+    }
+
+    private JPanel passwordPanel() {
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        inputPasswordBox = new JTextField(10);
+        JButton generatorButton = new JButton("Generate Password");
+        generatorButton.addActionListener( new GenerateKeyListener());
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.weightx = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        panel.add(inputPasswordBox, constraints);
+        constraints.gridx = 1;
+        constraints.weightx = 0;
+        panel.add(generatorButton, constraints);
         return panel;
     }
 
@@ -115,14 +130,6 @@ public class KeysTab extends TabBase {
         return panel;
     }
 
-    private class GenerateKeyListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-        }
-    }
-
     private class AddKeyListener implements ActionListener {
 
         @Override
@@ -153,6 +160,15 @@ public class KeysTab extends TabBase {
             }
             keyModel.clear();
             keyModel.addAll(keyManager.keyList);
+        }
+    }
+
+    private class GenerateKeyListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("generate button pressed");
+            inputPasswordBox.setText(KeyManager.generateKey());
         }
     }
 }

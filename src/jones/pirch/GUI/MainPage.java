@@ -65,7 +65,7 @@ public class MainPage extends JFrame {
 
         tabPanel.setLayout(new GridLayout(1, 2));
 
-        keysButton = new JButton("keys");
+        keysButton = new JButton("Keys");
         settingsButton = new JButton("Settings");
 
         keysButton.addActionListener(new TabButtonActionListener());

@@ -5,8 +5,6 @@ import jones.pirch.ProblemDomain.Key;
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 
 public class KeyManager {
 
@@ -16,9 +14,20 @@ public class KeyManager {
     public KeyManager() {
         this.populateKeyList(this.keyList);
     }
-    public KeyManager(String keyPath) {
+
+    /**
+     * Constructor made for testing purpose
+     * @param keyPath testing res path
+     * @param keyList list to link to manager
+     */
+    public KeyManager(String keyPath, ArrayList<Key> keyList) {
         this.keyPath = keyPath;
-        this.populateKeyList(this.keyList);
+        this.populateKeyList(keyList);
+    }
+
+    protected static String generateKey() {
+        //TODO finish this.
+        return null;
     }
 
     private void populateKeyList(ArrayList<Key> keyList) {
@@ -33,7 +42,6 @@ public class KeyManager {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-//        System.out.println(Arrays.toString(keyList.toArray()));
     }
 
     public void serializeKeyList() {
@@ -50,6 +58,7 @@ public class KeyManager {
             objOut.close();
             fileOut.close();
         } catch (IOException e) {
+            System.out.println("Bad File Path");
             e.printStackTrace();
         }
     }
